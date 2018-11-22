@@ -7,4 +7,5 @@ target 'WraithKing' do
 	pod 'Moya'
 	pod 'HandyJSON'
 #	pod 'SnapKit'
+ 	pod 'Kingfisher'
 end
