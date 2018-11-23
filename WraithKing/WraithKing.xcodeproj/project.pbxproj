@@ -25,6 +25,7 @@
 		153E5B3321A77BF10015C612 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E5B3221A77BF10015C612 /* Util.swift */; };
 		153E5B3521A7877A0015C612 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E5B3421A7877A0015C612 /* DetailViewController.swift */; };
 		153E5B3721A78BEF0015C612 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153E5B3621A78BEF0015C612 /* DetailViewController.xib */; };
+		15D04F3D21A8C93B0081746F /* HUDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D04F3C21A8C93B0081746F /* HUDHelper.swift */; };
 		602D673957EBD3F29C15A582 /* Pods_WraithKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0074F9B97939A908A0C821 /* Pods_WraithKing.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		153E5B3221A77BF10015C612 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		153E5B3421A7877A0015C612 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		153E5B3621A78BEF0015C612 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		15D04F3C21A8C93B0081746F /* HUDHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDHelper.swift; sourceTree = "<group>"; };
 		94D649EDD86B897E8C3C7825 /* Pods-WraithKing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WraithKing.debug.xcconfig"; path = "Target Support Files/Pods-WraithKing/Pods-WraithKing.debug.xcconfig"; sourceTree = "<group>"; };
 		AF8D972A138389DE601B95DB /* Pods-WraithKing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WraithKing.release.xcconfig"; path = "Target Support Files/Pods-WraithKing/Pods-WraithKing.release.xcconfig"; sourceTree = "<group>"; };
 		BC0074F9B97939A908A0C821 /* Pods_WraithKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WraithKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 			children = (
 				153E5B2821A76E170015C612 /* Color.swift */,
 				153E5B3221A77BF10015C612 /* Util.swift */,
+				15D04F3C21A8C93B0081746F /* HUDHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -387,13 +390,13 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/VBFPopFlatButton/VBFPopFlatButton.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -402,13 +405,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VBFPopFlatButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -425,6 +428,7 @@
 				153E5B3521A7877A0015C612 /* DetailViewController.swift in Sources */,
 				153E5B2C21A772CB0015C612 /* WaterfallLayout.swift in Sources */,
 				153E5AF121A6C88A0015C612 /* ViewController.swift in Sources */,
+				15D04F3D21A8C93B0081746F /* HUDHelper.swift in Sources */,
 				153E5B2321A6DD580015C612 /* UnsplashModel.swift in Sources */,
 				153E5B2F21A775060015C612 /* WaterfallCell.swift in Sources */,
 				153E5B2921A76E170015C612 /* Color.swift in Sources */,

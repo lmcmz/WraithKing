@@ -41,3 +41,21 @@ class Constants {
         return Constants.SCREEN_HEIGHT > 812
     }
 }
+
+extension String {
+    func readDateFromString(formatter: String) -> Date {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = formatter
+        let date: Date? = dateFormatterGet.date(from: self)! as Date
+        return date! as Date
+    }
+}
+
+extension Date {
+    public func printDateFromDate(formatter: String) -> String {
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = formatter
+        dateFormatterPrint.timeZone = NSTimeZone.local
+        return dateFormatterPrint.string(from: self)
+    }
+}

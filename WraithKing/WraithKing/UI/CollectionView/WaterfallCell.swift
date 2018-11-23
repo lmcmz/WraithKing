@@ -35,8 +35,8 @@ class WaterfallCell: UICollectionViewCell {
         self.backgroundColor = UIColor(hex: model.color!)
         self.background.backgroundColor = UIColor(hex: model.color!)
         let url = URL(string: (model.urls?.small)!)!
-        let resource = ImageResource(downloadURL: url, cacheKey: model.id)
-        self.imageView.kf.setImage(with: resource)
-//        self.imageView.kf.setImage(with: url, options: [.transition(.fade(0.2))])
+//        let resource = ImageResource(downloadURL: url, cacheKey: model.id)
+//        self.imageView.kf.setImage(with: resource)
+        self.imageView.kf.setImage(with: url, options: [.transition(.fade(0.2))])
     }
 }

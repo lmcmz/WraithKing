@@ -32,7 +32,7 @@ class UnsplashModel: HandyJSON {
     var updated_at: String?
     var urls: ImgModel?
     var links: LinkModel?
-    var likes: Int?
+    var likes: Int!
     var description: String?
     var user: UserModel?
     var color: String?

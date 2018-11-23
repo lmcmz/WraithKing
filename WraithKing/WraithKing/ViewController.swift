@@ -54,7 +54,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
-    func requestData(page: Int) {
+    func requestData(page: Int)
+    {
+        if (self.data == nil) {
+            HUDHelper.sharedHelper.show()
+        }
+        
         weak var weakSelf = self
         unsplashProvider.request(.photos(page)) { (result) in
             if case let .success(response) = result {
@@ -78,6 +83,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
                 weakSelf!.collectionView.infiniteScrollingView.stopAnimating()
                 weakSelf?.collectionView.reloadData()
+                HUDHelper.sharedHelper.remove()
             }
         }
     }
