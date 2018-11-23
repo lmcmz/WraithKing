@@ -8,10 +8,15 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
-class DetailViewController: UIViewController {
-    
+class DetailViewController: UIViewController
+{
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    @IBOutlet var userImageView: UIImageView!
+    @IBOutlet var usrNameLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
     
     var model: UnsplashModel?
     
@@ -23,16 +28,30 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hero.isEnabled = true;
-        self.imageView.hero.id = model?.id
-        self.view.hero.id = (model?.id)! + "color"
+        self.hero.isEnabled = true
+        imageView.hero.id = model?.id
+//        self.view.hero.id = (model?.id)! + "color"
         
-        let imgURL = URL(string: (model?.urls?.regular)!)
-        self.imageView.kf.indicatorType = .activity
-        self.imageView.kf.setImage(with: imgURL)
+        let imgURL = URL(string: (model?.urls?.full)!)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: imgURL)
+        
+        let usrImgURL = URL(string: (model?.user?.profile_image?.medium)!)
+        userImageView.kf.setImage(with: usrImgURL)
+        
+        usrNameLabel.text = model?.user?.username
+        locationLabel.text = model?.user?.location
+        if model?.user?.location == nil {
+            locationLabel.text = "ins: "+(model?.user!.instagram_username)!
+        }
+        
+        let rawWidth = CGFloat((model?.width)!)
+        let rawHeight = CGFloat((model?.height)!)
+        imageHeight.constant = Constants.SCREEN_WIDTH * (rawHeight / rawWidth)
+        
+//        self.imageView.kf.setImage(with: imgURL, placeholder: Placeholder(imgURL))
 //        self.imageView.kf.placeholder
-
-        self.view.backgroundColor = UIColor(hex: (model?.color)!)
+//        self.view.backgroundColor = UIColor(hex: (model?.color)!)
     }
     
     @IBAction func backButtonClick() {

@@ -10,6 +10,6 @@ target 'WraithKing' do
   pod 'Hero'
  	pod 'Kingfisher'
   pod 'NVActivityIndicatorView'
-  pod 'VBFPopFlatButton'
+#  pod 'VBFPopFlatButton'
   pod 'SVPullToRefresh'
 end

@@ -39,9 +39,4 @@ class UnsplashModel: HandyJSON {
     var width: Int!
     var height: Int!
     required init() {}
-    
-//    func union(model_1: [UnsplashModel], model_2: [UnsplashModel]) -> [UnsplashModel] {
-////        model_1.
-//        return model_1
-//    }
 }

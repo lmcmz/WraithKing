@@ -153,11 +153,32 @@
                                     <constraint firstItem="smD-Ll-W8Z" firstAttribute="leading" secondItem="Iob-zn-YMO" secondAttribute="trailing" constant="12" id="xdd-h1-1eC"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TT-YI-sqY" customClass="UIControl">
+                                <rect key="frame" x="157.66666666666666" y="678" width="60" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="oYj-nX-dNt">
+                                        <rect key="frame" x="15" y="18" width="30" height="24"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="oYj-nX-dNt" firstAttribute="centerX" secondItem="7TT-YI-sqY" secondAttribute="centerX" id="3LF-2Y-MWh"/>
+                                    <constraint firstItem="oYj-nX-dNt" firstAttribute="centerY" secondItem="7TT-YI-sqY" secondAttribute="centerY" id="BCC-xN-szD"/>
+                                    <constraint firstAttribute="width" secondItem="7TT-YI-sqY" secondAttribute="height" multiplier="1:1" id="jtE-XE-3MF"/>
+                                    <constraint firstAttribute="height" constant="60" id="mJX-0M-08h"/>
+                                    <constraint firstAttribute="width" constant="60" id="tra-u8-CvM"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="likeButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="AK3-WM-33S"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7TT-YI-sqY" secondAttribute="bottom" constant="40" id="5aD-ty-rhp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EUr-fP-k5X" secondAttribute="trailing" id="7UV-o5-f44"/>
                             <constraint firstItem="cID-eb-Lzb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="82D-Y3-JNG"/>
+                            <constraint firstItem="7TT-YI-sqY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9JD-E6-K0b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EUr-fP-k5X" secondAttribute="bottom" constant="-35" id="WMl-79-Mbf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cID-eb-Lzb" secondAttribute="trailing" id="auI-aR-lxx"/>
                             <constraint firstItem="EUr-fP-k5X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-45" id="feA-0L-8Yd"/>
@@ -168,6 +189,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="EUr-fP-k5X" id="Sbe-Bu-YcU"/>
+                        <outlet property="likeButton" destination="7TT-YI-sqY" id="sgw-UY-vd2"/>
                         <outlet property="navBar" destination="cmF-SW-oAQ" id="KKT-dW-5dx"/>
                         <outlet property="titleLabel" destination="hOO-hq-KYN" id="jkP-vm-Ekx"/>
                     </connections>
@@ -178,6 +200,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" width="30" height="24"/>
         <image name="menu-black" width="19" height="16"/>
         <image name="search-black" width="19" height="19"/>
     </resources>

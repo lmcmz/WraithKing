@@ -17,14 +17,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var navBar: UIVisualEffectView!
     @IBOutlet var titleLabel: UILabel!
-//    @IBOutlet var categoryButton: VBFPopFlatButton!
-//    @IBOutlet var menuButton: VBFPopFlatButton!
+    @IBOutlet var likeButton: UIControl!
     
-    var dataCount = 20
+    var unchanged = false
     var columnCount = 2
-//    var pages = 0
     var page: Int = 0
-//    var pageCount: Int = 0
+    var pageCount: Int = 0
     
     var data: [UnsplashModel?]? = nil
     
@@ -32,10 +30,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         
         self.hero.isEnabled = true
-        
         let nib = UINib.init(nibName: WaterfallCell.nameOfClass, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: WaterfallCell.nameOfClass)
-        collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         requestData(page: page)
         
@@ -45,6 +42,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.collectionView.infiniteScrollingView.startAnimating()
             self.requestData(page: self.page)
         }
+    
+        likeButton.layer.cornerRadius = 30
+        likeButton.layer.shadowColor = UIColor.black.cgColor
+        likeButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        likeButton.layer.shadowOpacity = 0.5
+        likeButton.layer.shadowRadius = 8.0
+    }
+    
+    @IBAction func likeButtonClicked() {
+        
     }
     
     func requestData(page: Int) {
@@ -53,12 +60,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             if case let .success(response) = result {
                 let model = response.mapArray(UnsplashModel.self)
                 if weakSelf!.data != nil {
-                    weakSelf!.data = weakSelf!.data! + model!
-                    // Remove duplicate
+                    let before = weakSelf?.data?.count
+                    for object in model! {
+                        if (!(weakSelf!.data?.contains(where: {$0!.id == object!.id}))!) {
+                            weakSelf!.data?.append(object)
+                        }
+                    }
+                    let after = weakSelf?.data?.count
+                    weakSelf?.unchanged = before == after
+                    
                 } else {
                     weakSelf!.data = model
                 }
                 weakSelf?.page += 1
+                if (weakSelf?.unchanged)! {
+                    self.requestData(page: (weakSelf?.page)!)
+                }
                 weakSelf!.collectionView.infiniteScrollingView.stopAnimating()
                 weakSelf?.collectionView.reloadData()
             }
@@ -66,20 +83,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
      //MARK: ScrollView Delegate
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y = scrollView.contentOffset.y + 30
-        let alpha = y / 60
-        
-        navBar.alpha = min(alpha, 1)
-        //        navBar.alpha = 1
-//        categoryButton.alpha = min(alpha, 1)
-        titleLabel.alpha = 1 - min(alpha, 1)
+        self.likeButton.transform = CGAffineTransform.init(translationX: 0, y: 100)
+        UIView.animate(withDuration: 0.3) {
+            self.likeButton.transform = CGAffineTransform.identity
+        }
     }
     
     //MARK: CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
         let model = self.data![indexPath.item]
         let detailVC = DetailViewController.createDetailVC(model: model!)
         self.present(detailVC, animated: true, completion: nil)
@@ -98,7 +110,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     //MARK: WCLWaterFallLayoutDelegate
-    
     func waterFall(_ collectionView: UICollectionView, layout waterFallLayout: WaterFallLayout, heightForItemAt indexPath: IndexPath) -> CGFloat {
         let width = (Constants.SCREEN_WIDTH - waterFallLayout.sectionLeft - waterFallLayout.sectionRight - waterFallLayout.lineSpacing)/2
         let index = indexPath.item
