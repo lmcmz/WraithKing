@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Hero
+import VBFPopFlatButton
+import SVPullToRefresh
+import NVActivityIndicatorView
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, WaterFallLayoutDelegate
 {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var navBar: UIVisualEffectView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var categoryButton: VBFPopFlatButton!
+    @IBOutlet var menuButton: VBFPopFlatButton!
+    
     var dataCount = 20
     var columnCount = 2
     var pages = 0
@@ -19,6 +28,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hero.isEnabled = true
+        
         let nib = UINib.init(nibName: WaterfallCell.nameOfClass, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: WaterfallCell.nameOfClass)
         
@@ -38,9 +50,24 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+     //MARK: ScrollView Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = scrollView.contentOffset.y + 30
+        let alpha = y / 60
+        
+        navBar.alpha = min(alpha, 1)
+        //        navBar.alpha = 1
+        categoryButton.alpha = min(alpha, 1)
+        titleLabel.alpha = 1 - min(alpha, 1)
+    }
+    
     //MARK: CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+//        collectionView.deselectItem(at: indexPath, animated: true)
+        let model = self.data![indexPath.item]
+        let detailVC = DetailViewController.createDetailVC(model: model!)
+        self.present(detailVC, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,18 +80,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let index = indexPath.item
         cell.configure(model: self.data![index]!)
         return cell
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Identifier", for: indexPath)
-//        cell.contentView.backgroundColor    = [UIColor.blue, UIColor.red, UIColor.yellow][indexPath.row % 3]
-//        cell.contentView.clipsToBounds      = true
-//        cell.contentView.layer.cornerRadius = 5
-//        return cell
     }
     
     //MARK: WCLWaterFallLayoutDelegate
     
     func waterFall(_ collectionView: UICollectionView, layout waterFallLayout: WaterFallLayout, heightForItemAt indexPath: IndexPath) -> CGFloat {
-//        let height = 200 + arc4random() % 100
-//        return CGFloat(height)
         let width = (Constants.SCREEN_WIDTH - waterFallLayout.sectionLeft - waterFallLayout.sectionRight - waterFallLayout.lineSpacing)/2
         let index = indexPath.item
         let model = self.data![index]

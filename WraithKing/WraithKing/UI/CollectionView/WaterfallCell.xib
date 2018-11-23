@@ -19,20 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="216" height="357"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MwA-Kl-Fw8">
+                        <rect key="frame" x="0.0" y="0.0" width="216" height="357"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wdk-iE-f1G">
                         <rect key="frame" x="0.0" y="0.0" width="216" height="357"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="MwA-Kl-Fw8" firstAttribute="top" secondItem="fBN-Eb-76H" secondAttribute="top" id="6XW-eD-pyP"/>
+                <constraint firstItem="MwA-Kl-Fw8" firstAttribute="leading" secondItem="fBN-Eb-76H" secondAttribute="leading" id="7lQ-VT-mYE"/>
                 <constraint firstAttribute="bottom" secondItem="Wdk-iE-f1G" secondAttribute="bottom" id="UcN-hd-Jr6"/>
                 <constraint firstAttribute="trailing" secondItem="Wdk-iE-f1G" secondAttribute="trailing" id="YGh-ht-PxS"/>
                 <constraint firstItem="Wdk-iE-f1G" firstAttribute="top" secondItem="fBN-Eb-76H" secondAttribute="top" id="cd4-Yj-TJc"/>
                 <constraint firstItem="Wdk-iE-f1G" firstAttribute="leading" secondItem="fBN-Eb-76H" secondAttribute="leading" id="hMQ-Bz-fmz"/>
+                <constraint firstAttribute="trailing" secondItem="MwA-Kl-Fw8" secondAttribute="trailing" id="kLS-hm-J4f"/>
+                <constraint firstAttribute="bottom" secondItem="MwA-Kl-Fw8" secondAttribute="bottom" id="lti-zK-ice"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="jkm-3W-bCa"/>
             <size key="customSize" width="216" height="357"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="background" destination="MwA-Kl-Fw8" id="XjE-ZI-RAE"/>
                 <outlet property="imageView" destination="Wdk-iE-f1G" id="FTu-xF-4Jl"/>
             </connections>
             <point key="canvasLocation" x="6" y="126"/>

@@ -7,5 +7,9 @@ target 'WraithKing' do
 	pod 'Moya'
 	pod 'HandyJSON'
 #	pod 'SnapKit'
+  pod 'Hero'
  	pod 'Kingfisher'
+  pod 'NVActivityIndicatorView'
+  pod 'VBFPopFlatButton'
+  pod 'SVPullToRefresh'
 end
