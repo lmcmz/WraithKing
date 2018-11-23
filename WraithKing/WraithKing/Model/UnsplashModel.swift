@@ -27,7 +27,7 @@ class LinkModel: HandyJSON {
 }
 
 class UnsplashModel: HandyJSON {
-    var id: String?
+    var id: String!
     var created_at: String?
     var updated_at: String?
     var urls: ImgModel?
@@ -36,5 +36,7 @@ class UnsplashModel: HandyJSON {
     var description: String?
     var user: UserModel?
     var color: String?
+    var width: Int!
+    var height: Int!
     required init() {}
 }

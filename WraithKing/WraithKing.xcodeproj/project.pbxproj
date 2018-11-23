@@ -22,6 +22,7 @@
 		153E5B2C21A772CB0015C612 /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E5B2B21A772CB0015C612 /* WaterfallLayout.swift */; };
 		153E5B2F21A775060015C612 /* WaterfallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E5B2E21A775060015C612 /* WaterfallCell.swift */; };
 		153E5B3121A7759C0015C612 /* WaterfallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153E5B3021A7759C0015C612 /* WaterfallCell.xib */; };
+		153E5B3321A77BF10015C612 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E5B3221A77BF10015C612 /* Util.swift */; };
 		602D673957EBD3F29C15A582 /* Pods_WraithKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0074F9B97939A908A0C821 /* Pods_WraithKing.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		153E5B2B21A772CB0015C612 /* WaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 		153E5B2E21A775060015C612 /* WaterfallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallCell.swift; sourceTree = "<group>"; };
 		153E5B3021A7759C0015C612 /* WaterfallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterfallCell.xib; sourceTree = "<group>"; };
+		153E5B3221A77BF10015C612 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		94D649EDD86B897E8C3C7825 /* Pods-WraithKing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WraithKing.debug.xcconfig"; path = "Target Support Files/Pods-WraithKing/Pods-WraithKing.debug.xcconfig"; sourceTree = "<group>"; };
 		AF8D972A138389DE601B95DB /* Pods-WraithKing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WraithKing.release.xcconfig"; path = "Target Support Files/Pods-WraithKing/Pods-WraithKing.release.xcconfig"; sourceTree = "<group>"; };
 		BC0074F9B97939A908A0C821 /* Pods_WraithKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WraithKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				153E5B2821A76E170015C612 /* Color.swift */,
+				153E5B3221A77BF10015C612 /* Util.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				153E5B2921A76E170015C612 /* Color.swift in Sources */,
 				153E5B1E21A6D5C50015C612 /* UnsplashAPI.swift in Sources */,
 				153E5B2021A6DAA90015C612 /* Moya+HandyJson.swift in Sources */,
+				153E5B3321A77BF10015C612 /* Util.swift in Sources */,
 				153E5B2521A6DDF30015C612 /* UserModel.swift in Sources */,
 				153E5AEF21A6C88A0015C612 /* AppDelegate.swift in Sources */,
 			);

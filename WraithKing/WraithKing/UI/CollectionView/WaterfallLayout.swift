@@ -50,17 +50,17 @@ class WaterFallLayout: UICollectionViewLayout {
         }
     }
     //section的Insets
-    @IBInspectable var sectionInsets: UIEdgeInsets      = UIEdgeInsets.zero
+    @IBInspectable var sectionInsets: UIEdgeInsets = UIEdgeInsets.zero
     //每行对应的高度
-    private var columnHeights: [Int: CGFloat]                  = [Int: CGFloat]()
+    private var columnHeights: [Int: CGFloat] = [Int: CGFloat]()
     private var attributes: [UICollectionViewLayoutAttributes] = [UICollectionViewLayoutAttributes]()
     
     //MARK: Initial Methods
     init(lineSpacing: CGFloat, columnSpacing: CGFloat, sectionInsets: UIEdgeInsets) {
         super.init()
-        self.lineSpacing      = lineSpacing
-        self.columnSpacing    = columnSpacing
-        self.sectionInsets    = sectionInsets
+        self.lineSpacing = lineSpacing
+        self.columnSpacing = columnSpacing
+        self.sectionInsets = sectionInsets
     }
     
     required init?(coder aDecoder: NSCoder) {

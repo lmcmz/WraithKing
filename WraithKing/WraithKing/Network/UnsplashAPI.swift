@@ -35,16 +35,14 @@ private extension String {
 }
 
 public enum unsplash {
-    case photos()
-//    case date(String)
-    
+    case photos(Int)
 }
 
 extension unsplash: TargetType {
     public var baseURL: URL { return URL(string: "https://api.unsplash.com")! }
     public var path: String {
         switch self {
-        case .photos():
+        case .photos(_):
             return "/photos"
         }
     }
@@ -55,26 +53,20 @@ extension unsplash: TargetType {
     
     public var task: Task {
         switch self {
-        case .photos():
-            return .requestParameters(parameters: ["client_id": ACCESS_KEY], encoding: URLEncoding.default)
-//        default:
-//            return .requestPlain
+        case .photos(let page):
+            return .requestParameters(parameters: ["client_id": ACCESS_KEY, "page": page], encoding: URLEncoding.default)
         }
     }
     public var validate: Bool {
         switch self {
-        case .photos():
+        case .photos(_):
             return true
-//        default:
-//            return false
         }
     }
     public var sampleData: Data {
         switch self {
-        case .photos():
+        case .photos(_):
             return "Half measures are as bad as nothing at all.".data(using: String.Encoding.utf8)!
-//        case .date(let name):
-//            return "{\"login\": \"\(name)\", \"id\": 100}".data(using: String.Encoding.utf8)!
         }
     }
     public var headers: [String: String]? {
