@@ -8,7 +8,7 @@
 
 import UIKit
 import Hero
-import VBFPopFlatButton
+//import VBFPopFlatButton
 import SVPullToRefresh
 import NVActivityIndicatorView
 
@@ -17,12 +17,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var navBar: UIVisualEffectView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var categoryButton: VBFPopFlatButton!
-    @IBOutlet var menuButton: VBFPopFlatButton!
+//    @IBOutlet var categoryButton: VBFPopFlatButton!
+//    @IBOutlet var menuButton: VBFPopFlatButton!
     
     var dataCount = 20
     var columnCount = 2
-    var pages = 0
+//    var pages = 0
+    var page: Int = 0
+//    var pageCount: Int = 0
     
     var data: [UnsplashModel?]? = nil
     
@@ -33,18 +35,31 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let nib = UINib.init(nibName: WaterfallCell.nameOfClass, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: WaterfallCell.nameOfClass)
+        collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
-        requestData()
+        requestData(page: page)
+        
         (collectionView.collectionViewLayout as? WaterFallLayout)?.delegate = self
+        
+        collectionView.addInfiniteScrolling {
+            self.collectionView.infiniteScrollingView.startAnimating()
+            self.requestData(page: self.page)
+        }
     }
     
-    func requestData() {
+    func requestData(page: Int) {
         weak var weakSelf = self
-        unsplashProvider.request(.photos(pages)) { (result) in
+        unsplashProvider.request(.photos(page)) { (result) in
             if case let .success(response) = result {
                 let model = response.mapArray(UnsplashModel.self)
-//                print(model!.count)
-                weakSelf?.data = model
+                if weakSelf!.data != nil {
+                    weakSelf!.data = weakSelf!.data! + model!
+                    // Remove duplicate
+                } else {
+                    weakSelf!.data = model
+                }
+                weakSelf?.page += 1
+                weakSelf!.collectionView.infiniteScrollingView.stopAnimating()
                 weakSelf?.collectionView.reloadData()
             }
         }
@@ -58,7 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         navBar.alpha = min(alpha, 1)
         //        navBar.alpha = 1
-        categoryButton.alpha = min(alpha, 1)
+//        categoryButton.alpha = min(alpha, 1)
         titleLabel.alpha = 1 - min(alpha, 1)
     }
     

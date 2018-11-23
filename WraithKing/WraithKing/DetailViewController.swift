@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
         self.imageView.kf.indicatorType = .activity
         self.imageView.kf.setImage(with: imgURL)
 //        self.imageView.kf.placeholder
-//        self.imageView.kf.setImage(with: imgURL, placeholder: <#T##Placeholder?#>, options: <#T##KingfisherOptionsInfo?#>, progressBlock: <#T##DownloadProgressBlock?##DownloadProgressBlock?##(Int64, Int64) -> Void#>, completionHandler: <#T##CompletionHandler?##CompletionHandler?##(Image?, NSError?, CacheType, URL?) -> Void#>)
+
         self.view.backgroundColor = UIColor(hex: (model?.color)!)
     }
     
