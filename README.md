@@ -1,6 +1,7 @@
 # WraithKing
-## Demo GIF
-|||
+## Demo 
+[Demo Video](https://youtu.be/W-xbcLVw3Zw)
+|Infinite Scroll | Image Detail |
 |--|--|
 |![GIF](screenshots/1.gif)|![GIF](screenshots/2.gif)|
 
