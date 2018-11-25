@@ -191,6 +191,9 @@
                                                 <constraint firstItem="XbW-oq-xOT" firstAttribute="centerY" secondItem="DY8-wj-Ptc" secondAttribute="centerY" id="BK6-wH-3YE"/>
                                                 <constraint firstItem="XbW-oq-xOT" firstAttribute="centerX" secondItem="DY8-wj-Ptc" secondAttribute="centerX" id="SUY-ng-mgK"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="likeButtonClicked" destination="-1" eventType="touchUpInside" id="5oq-CM-0k1"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

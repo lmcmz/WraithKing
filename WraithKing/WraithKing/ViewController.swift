@@ -8,9 +8,9 @@
 
 import UIKit
 import Hero
-//import VBFPopFlatButton
 import SVPullToRefresh
 import NVActivityIndicatorView
+import KRProgressHUD
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, WaterFallLayoutDelegate
 {
@@ -19,10 +19,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var likeButton: UIControl!
     
-    var unchanged = false
+    var unchanged = false // Indicate no new data add
     var columnCount = 2
     var page: Int = 0
-    var pageCount: Int = 0
     
     var data: [UnsplashModel?]? = nil
     
@@ -30,11 +29,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         
         self.hero.isEnabled = true
+        
         let nib = UINib.init(nibName: WaterfallCell.nameOfClass, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: WaterfallCell.nameOfClass)
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        
-        requestData(page: page)
         
         (collectionView.collectionViewLayout as? WaterFallLayout)?.delegate = self
         
@@ -42,18 +40,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.collectionView.infiniteScrollingView.startAnimating()
             self.requestData(page: self.page)
         }
-    
+        
         likeButton.layer.cornerRadius = 30
         likeButton.layer.shadowColor = UIColor.black.cgColor
         likeButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         likeButton.layer.shadowOpacity = 0.5
         likeButton.layer.shadowRadius = 8.0
-    }
-    
-    @IBAction func likeButtonClicked() {
         
+        requestData(page: page)
     }
     
+    //MARK: - Action
+    @IBAction func likeButtonClicked() {
+        KRProgressHUD.showInfo(withMessage: "You need tolog in first")
+    }
+    
+    //MARK: - Request
     func requestData(page: Int)
     {
         if (self.data == nil) {
@@ -64,23 +66,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         unsplashProvider.request(.photos(page)) { (result) in
             if case let .success(response) = result {
                 let model = response.mapArray(UnsplashModel.self)
+                
                 if weakSelf!.data != nil {
-                    let before = weakSelf?.data?.count
-                    for object in model! {
-                        if (!(weakSelf!.data?.contains(where: {$0!.id == object!.id}))!) {
-                            weakSelf!.data?.append(object)
-                        }
-                    }
-                    let after = weakSelf?.data?.count
-                    weakSelf?.unchanged = before == after
-                    
+                    // Have data, append
+                    weakSelf?.unchanged = (weakSelf?.appendNoDuplicateData(model: model! as! [UnsplashModel]))!
                 } else {
+                    // No data
                     weakSelf!.data = model
                 }
+                // Next page
                 weakSelf?.page += 1
+                // No new item add in data, fetch next page
                 if (weakSelf?.unchanged)! {
                     self.requestData(page: (weakSelf?.page)!)
                 }
+                // reload data
                 weakSelf!.collectionView.infiniteScrollingView.stopAnimating()
                 weakSelf?.collectionView.reloadData()
                 HUDHelper.sharedHelper.remove()
@@ -88,15 +88,28 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-     //MARK: ScrollView Delegate
+    // filter duplicate data
+    func appendNoDuplicateData(model: [UnsplashModel]) -> Bool {
+        let before = self.data?.count
+        for object in model {
+            if (!(self.data?.contains(where: {$0!.id == object.id}))!) {
+                self.data?.append(object)
+            }
+        }
+        let after = self.data?.count
+        return before == after
+    }
+    
+     //MARK: - ScrollView Delegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Hidden like button when scrolling
         self.likeButton.transform = CGAffineTransform.init(translationX: 0, y: 100)
         UIView.animate(withDuration: 0.3) {
             self.likeButton.transform = CGAffineTransform.identity
         }
     }
     
-    //MARK: CollectionView Delegate
+    //MARK: - CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.data![indexPath.item]
         let detailVC = DetailViewController.createDetailVC(model: model!)
@@ -115,7 +128,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
-    //MARK: WCLWaterFallLayoutDelegate
+    //MARK: - WCLWaterFallLayoutDelegate
     func waterFall(_ collectionView: UICollectionView, layout waterFallLayout: WaterFallLayout, heightForItemAt indexPath: IndexPath) -> CGFloat {
         let width = (Constants.SCREEN_WIDTH - waterFallLayout.sectionLeft - waterFallLayout.sectionRight - waterFallLayout.lineSpacing)/2
         let index = indexPath.item

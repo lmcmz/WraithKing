@@ -12,7 +12,7 @@ import HandyJSON
 
 public extension Response
 {
-    /// 整个 Data Model
+    // Data -> model
     public func mapObject<T: HandyJSON>(_ type: T.Type) -> T? {
         
         guard let dataString = String.init(data: self.data, encoding: .utf8),
@@ -25,7 +25,7 @@ public extension Response
     }
     
     
-    /// 制定的某个 Key 对应的模型
+    // Data -> Model Key
     public func mapObject<T: HandyJSON>(_ type: T.Type ,designatedPath: String) -> T?{
         
         guard let dataString = String(data: self.data, encoding: .utf8),
@@ -37,7 +37,7 @@ public extension Response
         return object
     }
     
-    /// Data 对应的 [Model]
+    // Data -> [Model]
     public func mapArray<T: HandyJSON>(_ type: T.Type)  -> [T?]? {
         
         guard let dataString = String(data: self.data, encoding: .utf8),
@@ -49,7 +49,7 @@ public extension Response
     }
     
     
-    /// Data 某个Key 下对应的 的 [Model]
+    // Data -> Key[Model]
     public func mapArray<T: HandyJSON>(_ type: T.Type ,designatedPath: String )  -> [T?]? {
         guard let dataString = String(data: self.data, encoding: .utf8),
             let object = JSONDeserializer<T>.deserializeModelArrayFrom(json: dataString , designatedPath: designatedPath)

@@ -16,16 +16,13 @@ class WaterfallCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.backgroundColor = UIColor.lightGray
         self.clipsToBounds = true
-//        self.layer.cornerRadius = 10
-        
         self.layer.cornerRadius = 10
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 3, height: 3)
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 8.0
+//        self.layer.shadowColor = UIColor.black.cgColor
+//        self.layer.shadowOffset = CGSize(width: 3, height: 3)
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.shadowRadius = 8.0
     }
     
     func configure(model: UnsplashModel) {

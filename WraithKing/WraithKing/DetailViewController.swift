@@ -26,12 +26,14 @@ class DetailViewController: UIViewController
     
     var model: UnsplashModel?
     
+    // Create VC with model
     class func createDetailVC(model: UnsplashModel) -> DetailViewController {
         let detailVC = DetailViewController()
         detailVC.model = model
         return detailVC
     }
     
+    // Configure view
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
@@ -68,6 +70,11 @@ class DetailViewController: UIViewController
 //        self.view.backgroundColor = UIColor(hex: (model?.color)!)
     }
     
+    // MARK: - Action
+    @IBAction func likeButtonClicked() {
+        KRProgressHUD.showInfo(withMessage: "You need tolog in frist")
+    }
+    
     @IBAction func downloadButtonClick() {
         if isFinished {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self,  #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -75,6 +82,11 @@ class DetailViewController: UIViewController
         }
         KRProgressHUD.showMessage("Image is downloading")
     }
+    
+    @IBAction func backButtonClick() {
+        self.hero.dismissViewController()
+    }
+    
     
     //MARK: - Add image to Library
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -84,10 +96,6 @@ class DetailViewController: UIViewController
         } else {
             KRProgressHUD.showSuccess(withMessage: "Image Saved")
         }
-    }
-    
-    @IBAction func backButtonClick() {
-        self.hero.dismissViewController()
     }
     
     override func didReceiveMemoryWarning() {
